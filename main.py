@@ -87,3 +87,22 @@ plt.tight_layout()
 plt.savefig('training_results.png')
 plt.show()
 print("✅ Training results saved as training_results.png")
+
+# ✅ Step 9: Predict and Visualize
+predictions = model.predict(x_test)
+
+plt.figure(figsize=(15, 5))
+for i in range(10):
+    plt.subplot(2, 5, i+1)
+    plt.imshow(x_test[i])
+    predicted = class_names[np.argmax(predictions[i])]
+    actual = class_names[y_test[i][0]]
+    color = 'green' if predicted == actual else 'red'
+    plt.title(f"Pred: {predicted}\nActual: {actual}", color=color)
+    plt.axis('off')
+
+plt.suptitle('ABB CNN - Predictions vs Actual', fontsize=14)
+plt.tight_layout()
+plt.savefig('predictions.png')
+plt.show()
+print("✅ Predictions saved as predictions.png")
